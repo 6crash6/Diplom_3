@@ -3,6 +3,7 @@ package pageobject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,11 +24,11 @@ public class MainPage {
     //Кнопка "Булки"
     private static final By BUNS_BUTTON = By.xpath(".//span[text()='Булки']");
     //Раздел "Соусы"
-    private static final By SAUCES_SECTION = By.xpath(".//h2[text()='Соусы']");
+    private static final By SAUCES_SECTION = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect'][.//span[text()='Соусы']]");
     //Раздел "Начинки"
-    private static final By FILLINGS_SECTION = By.xpath(".//h2[text()='Начинки']");
+    private static final By FILLINGS_SECTION = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect'][.//span[text()='Начинки']]");
     //Раздел "Булки"
-    private static final By BUNS_SECTION = By.xpath(".//h2[text()='Булки']");
+    private static final By BUNS_SECTION = By.xpath(".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect'][.//span[text()='Булки']]");
 
     WebDriver webDriver;
 
@@ -84,4 +85,25 @@ public class MainPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(BUNS_SECTION));
         return this;
     }
+
+    @Step("Активный раздел Булки")
+    public boolean checkBunsSection() {
+        WebDriverWait wait = new WebDriverWait(webDriver, 5);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(BUNS_SECTION));
+        return element.isDisplayed();
+    }
+
+ @Step("Активный раздел Соусы")
+ public boolean checkSaucesCheckSection() {
+     WebDriverWait wait = new WebDriverWait(webDriver, 5);
+     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(SAUCES_SECTION));
+     return element.isDisplayed();
+ }
+
+ @Step("Активный раздел Начинки")
+ public boolean checkFillingsSection() {
+     WebDriverWait wait = new WebDriverWait(webDriver, 5);
+     WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(FILLINGS_SECTION));
+     return element.isDisplayed();
+ }
 }

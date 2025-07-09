@@ -18,7 +18,7 @@ public class PersonalAccountTest extends BaseTest {
 
 
     @Before
-    @DisplayName("test create user by API")
+    @DisplayName("Create user by API")
     @Description("Создаётся успешно пользователь через API")
     public void createUser() {
 

@@ -22,11 +22,13 @@ public class WebDrivers {
                 break;
             case "yandexBrowser":
                 System.setProperty("webdriver.http.factory", "jdk-http-client");
+                // Теперь используем относительный путь
+                File driverFile = new File(System.getProperty("user.dir") + "/src/main/resources/yandexdriver.exe");
                 ChromeDriverService service = new ChromeDriverService.Builder()
-                        .usingDriverExecutable(new File("D:\\QA-java-diplom-1-main\\Diplom_3\\src\\main\\resources\\yandexdriver.exe"))
+                        .usingDriverExecutable(driverFile)
                         .build();
                 ChromeOptions options = new ChromeOptions()
-                        .setBinary("C:\\Users\\Sergey\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
+                        .setBinary(System.getProperty("user.home") + "/AppData/Local/Yandex/YandexBrowser/Application/browser.exe");
                 try {
                     webDriver = new ChromeDriver(service, options);
                 } catch (Exception e) {
